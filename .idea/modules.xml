@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/bi/bi.iml" filepath="$PROJECT_DIR$/bi/bi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bi_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bi_main.iml" group="bi" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bi_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bi_test.iml" group="bi" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/miPlatform.iml" filepath="$PROJECT_DIR$/.idea/miPlatform.iml" />
+    </modules>
+  </component>
+</project>

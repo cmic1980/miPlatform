@@ -1,0 +1,27 @@
+{
+    "group": {
+      "fields": [
+        "DeviceName"
+      ],
+      "operationList": [
+        {
+          "alias": "t",
+          "field": "",
+          "type": "count"
+        },
+        {
+          "alias": "Age",
+          "field": "Age",
+          "type": "sum"
+        }
+      ]
+    },
+    "matchList": [
+      {
+        "field": "RegisterTime",
+        "link": "and",
+        "operate": "lt",
+        "value": "2018-05-10 17:35"
+      }
+    ]
+}
