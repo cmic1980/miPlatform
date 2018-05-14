@@ -15,8 +15,8 @@ public class BIController {
     private AggregationService aggregationService;
 
     @RequestMapping(value = "/bi/aggregate", method = RequestMethod.POST)
-    public AggregationResult aggregate(@RequestBody AggregationParameter parameter) {
-        var result = aggregationService.aggregate(parameter);
+    public AggregationResult aggregateFromCube(@RequestBody AggregationParameter parameter) {
+        var result = aggregationService.aggregateFromCube(parameter);
         return result;
     }
 }

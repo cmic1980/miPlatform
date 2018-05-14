@@ -41,7 +41,6 @@ public class MongoDBTest {
 
     @Test
     public void run() throws ParseException, IOException {
-
         URL url = this.getClass().getResource("/input.json");
         String fileName = url.getFile();
         File file = new File(fileName);
@@ -49,8 +48,21 @@ public class MongoDBTest {
         String json = FileUtils.readFileToString(file,"utf-8");
         AggregationParameter aggregationParameter = JSONObject.parseObject(json, AggregationParameter.class);
 
-        AggregationResult aggregationResult = aggregationService.aggregate(aggregationParameter);
+        AggregationResult aggregationResult = aggregationService.aggregateFromCube(aggregationParameter);
         aggregationResult = null;
 
+
+    }
+
+    @Test
+    public void testGenerateCube() throws ParseException, IOException {
+        URL url = this.getClass().getResource("/input.json");
+        String fileName = url.getFile();
+        File file = new File(fileName);
+
+        String json = FileUtils.readFileToString(file,"utf-8");
+        AggregationParameter aggregationParameter = JSONObject.parseObject(json, AggregationParameter.class);
+
+        aggregationService.generateCube(aggregationParameter, true);
     }
 }

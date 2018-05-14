@@ -581,3 +581,290 @@
 2018-05-14 14:36:02.535  INFO 101292 --- [http-nio-9101-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
 2018-05-14 14:36:02.555  INFO 101292 --- [http-nio-9101-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 20 ms
 2018-05-14 14:36:02.693  INFO 101292 --- [http-nio-9101-exec-2] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:23}] to localhost:27017
+2018-05-14 14:49:14.418 ERROR 93724 --- [restartedMain] o.s.b.c.l.LoggingApplicationListener     : Cannot set level:  for 'com.hinacom'
+2018-05-14 14:49:14.500  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Starting Application on dell-PC with PID 93724 (C:\src\miPlatform\bi\out\production\classes started by Administrator in C:\src\miPlatform)
+2018-05-14 14:49:14.501  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : No active profile set, falling back to default profiles: default
+2018-05-14 14:49:14.542  INFO 93724 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1e70b135: startup date [Mon May 14 14:49:14 CST 2018]; root of context hierarchy
+2018-05-14 14:49:15.951  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9101 (http)
+2018-05-14 14:49:15.987  INFO 93724 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-05-14 14:49:15.988  INFO 93724 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-14 14:49:15.991  INFO 93724 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-10\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\;E:\dev\Git\bin;E:\dev\maven\bin;C:\Program Files\nodejs\;C:\Windows\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Redis\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files\TortoiseSVN\bin;C:\dev\gradle\bin;C:\dev\scala\bin;C:\Users\Administrator\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Administrator\AppData\Local\Programs\Python\Python36-32\;C:\Users\Administrator\.dnx\bin;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;.]
+2018-05-14 14:49:16.086  INFO 93724 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-05-14 14:49:16.086  INFO 93724 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1544 ms
+2018-05-14 14:49:16.219  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-05-14 14:49:16.224  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-14 14:49:16.224  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-14 14:49:16.224  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-14 14:49:16.225  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-14 14:49:16.583  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2018-05-14 14:49:16.584  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2018-05-14 14:49:16.622  INFO 93724 --- [cluster-ClusterId{value='5af9316cc4406d6e1cceee83', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:26}] to localhost:27017
+2018-05-14 14:49:16.624  INFO 93724 --- [cluster-ClusterId{value='5af9316cc4406d6e1cceee83', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 6, 4]}, minWireVersion=0, maxWireVersion=2, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=859017}
+2018-05-14 14:49:16.625  INFO 93724 --- [cluster-ClusterId{value='5af9316cc4406d6e1cceee83', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2018-05-14 14:49:16.827  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:49:17.044  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1e70b135: startup date [Mon May 14 14:49:14 CST 2018]; root of context hierarchy
+2018-05-14 14:49:17.092  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bi/aggregate],methods=[POST]}" onto public com.hinacom.bi.domain.AggregationResult com.hinacom.bi.controller.BIController.aggregate(com.hinacom.bi.domain.AggregationParameter)
+2018-05-14 14:49:17.095  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-14 14:49:17.096  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-14 14:49:17.118  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:49:17.118  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:49:17.325  INFO 93724 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-05-14 14:49:17.349  INFO 93724 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-05-14 14:49:17.381  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9101 (http) with context path ''
+2018-05-14 14:49:17.386  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Started Application in 3.325 seconds (JVM running for 4.231)
+2018-05-14 14:49:25.018  INFO 93724 --- [http-nio-9101-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-05-14 14:49:25.018  INFO 93724 --- [http-nio-9101-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-05-14 14:49:25.039  INFO 93724 --- [http-nio-9101-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 21 ms
+2018-05-14 14:49:25.151  INFO 93724 --- [http-nio-9101-exec-2] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:27}] to localhost:27017
+2018-05-14 14:51:04.972  INFO 93724 --- [Thread-5] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1e70b135: startup date [Mon May 14 14:49:14 CST 2018]; root of context hierarchy
+2018-05-14 14:51:04.975  INFO 93724 --- [Thread-5] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-05-14 14:51:04.979  INFO 93724 --- [Thread-5] org.mongodb.driver.connection            : Closed connection [connectionId{localValue:2, serverValue:27}] to localhost:27017 because the pool has been closed.
+2018-05-14 14:51:05.260 ERROR 93724 --- [restartedMain] o.s.b.c.l.LoggingApplicationListener     : Cannot set level:  for 'com.hinacom'
+2018-05-14 14:51:05.268  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Starting Application on dell-PC with PID 93724 (C:\src\miPlatform\bi\out\production\classes started by Administrator in C:\src\miPlatform)
+2018-05-14 14:51:05.269  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : No active profile set, falling back to default profiles: default
+2018-05-14 14:51:05.272  INFO 93724 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@67caef9a: startup date [Mon May 14 14:51:05 CST 2018]; root of context hierarchy
+2018-05-14 14:51:06.194  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9101 (http)
+2018-05-14 14:51:06.195  INFO 93724 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-05-14 14:51:06.195  INFO 93724 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-14 14:51:06.229  INFO 93724 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-05-14 14:51:06.230  INFO 93724 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 959 ms
+2018-05-14 14:51:06.245  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-05-14 14:51:06.246  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-14 14:51:06.246  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-14 14:51:06.246  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-14 14:51:06.246  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-14 14:51:06.262  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2018-05-14 14:51:06.262  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2018-05-14 14:51:06.265  INFO 93724 --- [cluster-ClusterId{value='5af931dac4406d6e1cceee84', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:28}] to localhost:27017
+2018-05-14 14:51:06.266  INFO 93724 --- [cluster-ClusterId{value='5af931dac4406d6e1cceee84', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 6, 4]}, minWireVersion=0, maxWireVersion=2, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=242773}
+2018-05-14 14:51:06.266  INFO 93724 --- [cluster-ClusterId{value='5af931dac4406d6e1cceee84', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2018-05-14 14:51:06.285  WARN 93724 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'BIController': Unsatisfied dependency expressed through field 'aggregationService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.hinacom.bi.service.AggregationService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2018-05-14 14:51:06.286  INFO 93724 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2018-05-14 14:51:06.293  INFO 93724 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-05-14 14:51:06.540 ERROR 93724 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field aggregationService in com.hinacom.bi.controller.BIController required a bean of type 'com.hinacom.bi.service.AggregationService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.hinacom.bi.service.AggregationService' in your configuration.
+
+2018-05-14 14:51:44.510 ERROR 93724 --- [restartedMain] o.s.b.c.l.LoggingApplicationListener     : Cannot set level:  for 'com.hinacom'
+2018-05-14 14:51:44.516  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Starting Application on dell-PC with PID 93724 (C:\src\miPlatform\bi\out\production\classes started by Administrator in C:\src\miPlatform)
+2018-05-14 14:51:44.516  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : No active profile set, falling back to default profiles: default
+2018-05-14 14:51:44.518  INFO 93724 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1e91c27a: startup date [Mon May 14 14:51:44 CST 2018]; root of context hierarchy
+2018-05-14 14:51:45.131  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9101 (http)
+2018-05-14 14:51:45.132  INFO 93724 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-05-14 14:51:45.133  INFO 93724 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-14 14:51:45.161  INFO 93724 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2018-05-14 14:51:45.162  INFO 93724 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 644 ms
+2018-05-14 14:51:45.178  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-05-14 14:51:45.178  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-14 14:51:45.178  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-14 14:51:45.178  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-14 14:51:45.178  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-14 14:51:45.193  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2018-05-14 14:51:45.194  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2018-05-14 14:51:45.197  INFO 93724 --- [cluster-ClusterId{value='5af93201c4406d6e1cceee85', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:4, serverValue:29}] to localhost:27017
+2018-05-14 14:51:45.198  INFO 93724 --- [cluster-ClusterId{value='5af93201c4406d6e1cceee85', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 6, 4]}, minWireVersion=0, maxWireVersion=2, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=464813}
+2018-05-14 14:51:45.198  INFO 93724 --- [cluster-ClusterId{value='5af93201c4406d6e1cceee85', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2018-05-14 14:51:45.227  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:51:45.260  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1e91c27a: startup date [Mon May 14 14:51:44 CST 2018]; root of context hierarchy
+2018-05-14 14:51:45.264  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bi/aggregate],methods=[POST]}" onto public com.hinacom.bi.domain.AggregationResult com.hinacom.bi.controller.BIController.aggregate(com.hinacom.bi.domain.AggregationParameter)
+2018-05-14 14:51:45.265  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-14 14:51:45.266  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-14 14:51:45.270  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:51:45.270  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:51:45.305  INFO 93724 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-05-14 14:51:45.316  INFO 93724 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-05-14 14:51:45.324  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9101 (http) with context path ''
+2018-05-14 14:51:45.324  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Started Application in 0.864 seconds (JVM running for 152.166)
+2018-05-14 14:51:45.326  INFO 93724 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2018-05-14 14:52:04.939  INFO 93724 --- [Thread-9] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1e91c27a: startup date [Mon May 14 14:51:44 CST 2018]; root of context hierarchy
+2018-05-14 14:52:04.940  INFO 93724 --- [Thread-9] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-05-14 14:52:05.203 ERROR 93724 --- [restartedMain] o.s.b.c.l.LoggingApplicationListener     : Cannot set level:  for 'com.hinacom'
+2018-05-14 14:52:05.212  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Starting Application on dell-PC with PID 93724 (C:\src\miPlatform\bi\out\production\classes started by Administrator in C:\src\miPlatform)
+2018-05-14 14:52:05.212  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : No active profile set, falling back to default profiles: default
+2018-05-14 14:52:05.216  INFO 93724 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5be8b160: startup date [Mon May 14 14:52:05 CST 2018]; root of context hierarchy
+2018-05-14 14:52:06.069  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9101 (http)
+2018-05-14 14:52:06.071  INFO 93724 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-05-14 14:52:06.071  INFO 93724 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-14 14:52:06.098  INFO 93724 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2018-05-14 14:52:06.099  INFO 93724 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 884 ms
+2018-05-14 14:52:06.115  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-05-14 14:52:06.116  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-14 14:52:06.116  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-14 14:52:06.116  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-14 14:52:06.116  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-14 14:52:06.166  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2018-05-14 14:52:06.166  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2018-05-14 14:52:06.169  INFO 93724 --- [cluster-ClusterId{value='5af93216c4406d6e1cceee86', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:5, serverValue:30}] to localhost:27017
+2018-05-14 14:52:06.169  INFO 93724 --- [cluster-ClusterId{value='5af93216c4406d6e1cceee86', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 6, 4]}, minWireVersion=0, maxWireVersion=2, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=256293}
+2018-05-14 14:52:06.170  INFO 93724 --- [cluster-ClusterId{value='5af93216c4406d6e1cceee86', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2018-05-14 14:52:06.188  WARN 93724 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'BIController': Unsatisfied dependency expressed through field 'aggregationService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.hinacom.bi.service.AggregationService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2018-05-14 14:52:06.189  INFO 93724 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2018-05-14 14:52:06.195  INFO 93724 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-05-14 14:52:06.480 ERROR 93724 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field aggregationService in com.hinacom.bi.controller.BIController required a bean of type 'com.hinacom.bi.service.AggregationService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.hinacom.bi.service.AggregationService' in your configuration.
+
+2018-05-14 14:52:12.026 ERROR 93724 --- [restartedMain] o.s.b.c.l.LoggingApplicationListener     : Cannot set level:  for 'com.hinacom'
+2018-05-14 14:52:12.032  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Starting Application on dell-PC with PID 93724 (C:\src\miPlatform\bi\out\production\classes started by Administrator in C:\src\miPlatform)
+2018-05-14 14:52:12.032  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : No active profile set, falling back to default profiles: default
+2018-05-14 14:52:12.035  INFO 93724 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@53b47193: startup date [Mon May 14 14:52:12 CST 2018]; root of context hierarchy
+2018-05-14 14:52:12.615  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9101 (http)
+2018-05-14 14:52:12.615  INFO 93724 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-05-14 14:52:12.615  INFO 93724 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-14 14:52:12.644  INFO 93724 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2018-05-14 14:52:12.645  INFO 93724 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 610 ms
+2018-05-14 14:52:12.659  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-05-14 14:52:12.661  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-14 14:52:12.661  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-14 14:52:12.661  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-14 14:52:12.661  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-14 14:52:12.678  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2018-05-14 14:52:12.678  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2018-05-14 14:52:12.680  INFO 93724 --- [cluster-ClusterId{value='5af9321cc4406d6e1cceee87', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:6, serverValue:31}] to localhost:27017
+2018-05-14 14:52:12.681  INFO 93724 --- [cluster-ClusterId{value='5af9321cc4406d6e1cceee87', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 6, 4]}, minWireVersion=0, maxWireVersion=2, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=307973}
+2018-05-14 14:52:12.681  INFO 93724 --- [cluster-ClusterId{value='5af9321cc4406d6e1cceee87', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2018-05-14 14:52:12.717  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:52:12.752  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@53b47193: startup date [Mon May 14 14:52:12 CST 2018]; root of context hierarchy
+2018-05-14 14:52:12.755  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bi/aggregate],methods=[POST]}" onto public com.hinacom.bi.domain.AggregationResult com.hinacom.bi.controller.BIController.aggregate(com.hinacom.bi.domain.AggregationParameter)
+2018-05-14 14:52:12.757  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-14 14:52:12.757  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-14 14:52:12.760  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:52:12.760  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:52:12.796  INFO 93724 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-05-14 14:52:12.806  INFO 93724 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-05-14 14:52:12.813  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9101 (http) with context path ''
+2018-05-14 14:52:12.813  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Started Application in 0.825 seconds (JVM running for 179.654)
+2018-05-14 14:52:12.815  INFO 93724 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2018-05-14 14:52:16.667  INFO 93724 --- [Thread-18] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@53b47193: startup date [Mon May 14 14:52:12 CST 2018]; root of context hierarchy
+2018-05-14 14:52:16.668  INFO 93724 --- [Thread-18] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-05-14 14:52:16.948 ERROR 93724 --- [restartedMain] o.s.b.c.l.LoggingApplicationListener     : Cannot set level:  for 'com.hinacom'
+2018-05-14 14:52:16.959  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Starting Application on dell-PC with PID 93724 (C:\src\miPlatform\bi\out\production\classes started by Administrator in C:\src\miPlatform)
+2018-05-14 14:52:16.959  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : No active profile set, falling back to default profiles: default
+2018-05-14 14:52:16.963  INFO 93724 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1bfb4597: startup date [Mon May 14 14:52:16 CST 2018]; root of context hierarchy
+2018-05-14 14:52:17.653  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9101 (http)
+2018-05-14 14:52:17.654  INFO 93724 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-05-14 14:52:17.654  INFO 93724 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-14 14:52:17.683  INFO 93724 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2018-05-14 14:52:17.684  INFO 93724 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 721 ms
+2018-05-14 14:52:17.697  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-05-14 14:52:17.697  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-14 14:52:17.697  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-14 14:52:17.697  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-14 14:52:17.697  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-14 14:52:17.714  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2018-05-14 14:52:17.714  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2018-05-14 14:52:17.717  INFO 93724 --- [cluster-ClusterId{value='5af93221c4406d6e1cceee88', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:7, serverValue:32}] to localhost:27017
+2018-05-14 14:52:17.718  INFO 93724 --- [cluster-ClusterId{value='5af93221c4406d6e1cceee88', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 6, 4]}, minWireVersion=0, maxWireVersion=2, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=228651}
+2018-05-14 14:52:17.718  INFO 93724 --- [cluster-ClusterId{value='5af93221c4406d6e1cceee88', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2018-05-14 14:52:17.745  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:52:17.782  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1bfb4597: startup date [Mon May 14 14:52:16 CST 2018]; root of context hierarchy
+2018-05-14 14:52:17.786  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bi/aggregate],methods=[POST]}" onto public com.hinacom.bi.domain.AggregationResult com.hinacom.bi.controller.BIController.aggregate(com.hinacom.bi.domain.AggregationParameter)
+2018-05-14 14:52:17.787  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-14 14:52:17.787  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-14 14:52:17.791  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:52:17.791  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:52:17.828  INFO 93724 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-05-14 14:52:17.842  INFO 93724 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-05-14 14:52:17.851  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9101 (http) with context path ''
+2018-05-14 14:52:17.852  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Started Application in 0.958 seconds (JVM running for 184.693)
+2018-05-14 14:52:17.854  INFO 93724 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2018-05-14 14:52:20.688  INFO 93724 --- [Thread-27] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1bfb4597: startup date [Mon May 14 14:52:16 CST 2018]; root of context hierarchy
+2018-05-14 14:52:20.690  INFO 93724 --- [Thread-27] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-05-14 14:52:20.998 ERROR 93724 --- [restartedMain] o.s.b.c.l.LoggingApplicationListener     : Cannot set level:  for 'com.hinacom'
+2018-05-14 14:52:21.006  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Starting Application on dell-PC with PID 93724 (C:\src\miPlatform\bi\out\production\classes started by Administrator in C:\src\miPlatform)
+2018-05-14 14:52:21.006  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : No active profile set, falling back to default profiles: default
+2018-05-14 14:52:21.010  INFO 93724 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@593efd62: startup date [Mon May 14 14:52:21 CST 2018]; root of context hierarchy
+2018-05-14 14:52:21.633  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9101 (http)
+2018-05-14 14:52:21.634  INFO 93724 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-05-14 14:52:21.634  INFO 93724 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-14 14:52:21.660  INFO 93724 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2018-05-14 14:52:21.662  INFO 93724 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 652 ms
+2018-05-14 14:52:21.673  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-05-14 14:52:21.673  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-14 14:52:21.674  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-14 14:52:21.674  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-14 14:52:21.674  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-14 14:52:21.688  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2018-05-14 14:52:21.689  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2018-05-14 14:52:21.691  INFO 93724 --- [cluster-ClusterId{value='5af93225c4406d6e1cceee89', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:8, serverValue:33}] to localhost:27017
+2018-05-14 14:52:21.692  INFO 93724 --- [cluster-ClusterId{value='5af93225c4406d6e1cceee89', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 6, 4]}, minWireVersion=0, maxWireVersion=2, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=242171}
+2018-05-14 14:52:21.692  INFO 93724 --- [cluster-ClusterId{value='5af93225c4406d6e1cceee89', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2018-05-14 14:52:21.721  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:52:21.753  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@593efd62: startup date [Mon May 14 14:52:21 CST 2018]; root of context hierarchy
+2018-05-14 14:52:21.757  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bi/aggregate],methods=[POST]}" onto public com.hinacom.bi.domain.AggregationResult com.hinacom.bi.controller.BIController.aggregate(com.hinacom.bi.domain.AggregationParameter)
+2018-05-14 14:52:21.758  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-14 14:52:21.758  INFO 93724 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-14 14:52:21.762  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:52:21.762  INFO 93724 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-14 14:52:21.796  INFO 93724 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-05-14 14:52:21.808  INFO 93724 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-05-14 14:52:21.816  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9101 (http) with context path ''
+2018-05-14 14:52:21.817  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Started Application in 0.873 seconds (JVM running for 188.657)
+2018-05-14 14:52:21.818  INFO 93724 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2018-05-14 14:52:30.352  INFO 93724 --- [Thread-33] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@593efd62: startup date [Mon May 14 14:52:21 CST 2018]; root of context hierarchy
+2018-05-14 14:52:30.353  INFO 93724 --- [Thread-33] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-05-14 14:52:30.590 ERROR 93724 --- [restartedMain] o.s.b.c.l.LoggingApplicationListener     : Cannot set level:  for 'com.hinacom'
+2018-05-14 14:52:30.598  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : Starting Application on dell-PC with PID 93724 (C:\src\miPlatform\bi\out\production\classes started by Administrator in C:\src\miPlatform)
+2018-05-14 14:52:30.599  INFO 93724 --- [restartedMain] com.hinacom.bi.Application               : No active profile set, falling back to default profiles: default
+2018-05-14 14:52:30.602  INFO 93724 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@166427fa: startup date [Mon May 14 14:52:30 CST 2018]; root of context hierarchy
+2018-05-14 14:52:31.266  INFO 93724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9101 (http)
+2018-05-14 14:52:31.267  INFO 93724 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-05-14 14:52:31.267  INFO 93724 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-14 14:52:31.297  INFO 93724 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2018-05-14 14:52:31.299  INFO 93724 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 697 ms
+2018-05-14 14:52:31.312  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-05-14 14:52:31.313  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-14 14:52:31.313  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-14 14:52:31.313  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-14 14:52:31.313  INFO 93724 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-14 14:52:31.334  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2018-05-14 14:52:31.334  INFO 93724 --- [restartedMain] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2018-05-14 14:52:31.337  INFO 93724 --- [cluster-ClusterId{value='5af9322fc4406d6e1cceee8a', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:9, serverValue:34}] to localhost:27017
+2018-05-14 14:52:31.342  INFO 93724 --- [cluster-ClusterId{value='5af9322fc4406d6e1cceee8a', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[2, 6, 4]}, minWireVersion=0, maxWireVersion=2, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=478334}
+2018-05-14 14:52:31.348  INFO 93724 --- [cluster-ClusterId{value='5af9322fc4406d6e1cceee8a', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2018-05-14 14:52:31.362  WARN 93724 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'BIController': Unsatisfied dependency expressed through field 'aggregationService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.hinacom.bi.service.AggregationService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2018-05-14 14:52:31.363  INFO 93724 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2018-05-14 14:52:31.377  INFO 93724 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-05-14 14:52:31.648 ERROR 93724 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field aggregationService in com.hinacom.bi.controller.BIController required a bean of type 'com.hinacom.bi.service.AggregationService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.hinacom.bi.service.AggregationService' in your configuration.
+

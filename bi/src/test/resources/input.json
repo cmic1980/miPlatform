@@ -6,28 +6,32 @@
     "end": "2015-01-01T00:00:00Z"
   },
   "group": {
+    "cube":"C1",/* 生成CLUE表名字 */
     "fields": [
-      "PatientGender"
-    ],
+      "PatientGender",
+      "ModalityName",
+      "DeviceName",
+      "PatientType",
+      "ExecDepartmentName",
+      "ApplyDepartmentId"
+    ], /*
+    性别           （PatientGender）
+    设备类型   (ModalityName)
+    设备           (DeviceName)
+    患者来源   (PatientType)
+    检查科室   （ExecDepartmentName）
+    申请科室    （ApplyDepartmentId）
+    是否三维重建 （true）
+
+    */
     "operationList": [
       {
         "alias": "t",
         "field": "",
         "type": "count"
-      },
-      {
-        "alias": "Age",
-        "field": "Age",
-        "type": "sum"
       }
     ]
   },
   "matchList": [
-    {
-      "field": "RegisterTime",
-
-      "operate": "lt",
-      "value": "2018-05-10T17:35:00Z"
-    }
   ]
 }

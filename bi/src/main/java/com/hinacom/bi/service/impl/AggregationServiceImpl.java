@@ -15,8 +15,12 @@ import org.springframework.stereotype.Service;
 
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -29,12 +33,10 @@ public class AggregationServiceImpl implements AggregationService {
     @Autowired
     private MongoTemplate template;
 
-    @Override
-    public AggregationResult aggregate(AggregationParameter aggregationParameter) {
+    private AggregationResult aggregate(String collectionName, Group groupParameter, List<Match> matchList) {
         List<AggregationOperation> aggregationOperationList = new ArrayList<AggregationOperation>();
 
         // matchs
-        List<Match> matchList = aggregationParameter.getMatchList();
         Criteria criteria = this.buildCriteria(matchList);
         if (criteria != null) {
             var match = match(criteria);
@@ -42,7 +44,6 @@ public class AggregationServiceImpl implements AggregationService {
         }
 
         // group
-        Group groupParameter = aggregationParameter.getGroup();
         String[] groupFields = groupParameter.getFields();
         // group - fields
         var group = group(groupFields);
@@ -80,10 +81,115 @@ public class AggregationServiceImpl implements AggregationService {
         aggregationOperationList.toArray(aggregationOperationArray);
 
         Aggregation agg = newAggregation(aggregationOperationArray);
-        AggregationResults<BasicDBObject> aggregationResults = template.aggregate(agg, "StatisticOrder", BasicDBObject.class);
+        AggregationResults<BasicDBObject> aggregationResults = template.aggregate(agg, collectionName, BasicDBObject.class);
         AggregationResult aggregationResult = AggregationResult.parse(aggregationResults);
         return aggregationResult;
     }
+
+    public AggregationResult aggregateByTimeScope(String collectionName, Group groupParameter, TimeCondition timeCondition) {
+        List<Match> matchList = new ArrayList<Match>();
+        Match match = new Match();
+        match.setValue(timeCondition.getStart());
+        match.setOperate(MatchOperate.gt);
+        match.setField(timeCondition.getField());
+        matchList.add(match);
+
+        AggregationResult aggregationResult = this.aggregate(collectionName, groupParameter, matchList);
+        return aggregationResult;
+    }
+
+    @Override
+    public void generateCube(AggregationParameter aggregationParameter, Boolean isReimport) {
+
+        // 预处理数据
+        if (isReimport) {
+            // daily
+            // 删除daily预处理集合
+            String dailyCollectionName = aggregationParameter.getDailyCubeCoCollectionName();
+            this.template.getDb().getCollection(dailyCollectionName).drop();
+            this.template.getDb().createCollection(dailyCollectionName);
+
+            // 重新插入daily预处理集合
+            TimeCondition timeCondition = aggregationParameter.getTimeCondition();
+            Date start = timeCondition.getStart();
+            Date end = timeCondition.getEnd();
+            while (start.getTime() < end.getTime()) {
+                this.generateCubeForDaily(aggregationParameter, start);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(start);
+                calendar.add(Calendar.DATE, 1);
+                start = calendar.getTime();
+            }
+        } else {
+            // daily
+            ZoneId zoneId = ZoneId.systemDefault();
+            LocalDate lday = LocalDate.now();
+            ZonedDateTime zdt = lday.atStartOfDay(zoneId);
+
+            Date day = Date.from(zdt.toInstant());
+            this.generateCubeForDaily(aggregationParameter, day);
+        }
+
+    }
+
+    private void generateCubeForDaily(AggregationParameter aggregationParameter, Date day) {
+        Date start = day;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(start);
+        calendar.add(Calendar.DATE, 1);
+        Date end = calendar.getTime();
+
+
+        List<Match> matchList = aggregationParameter.getMatchList();
+        Match match = new Match();
+        match.setValue(start);
+        match.setOperate(MatchOperate.gte);
+        match.setField(aggregationParameter.getTimeCondition().getField());
+        match.setLink(MatchLinkOperate.and);
+        matchList.add(match);
+
+        match = new Match();
+        match.setValue(end);
+        match.setOperate(MatchOperate.lt);
+        match.setField(aggregationParameter.getTimeCondition().getField());
+        matchList.add(match);
+
+
+        // 集合名称
+        String collectionName = aggregationParameter.getCollectionName();
+        AggregationResult aggregationResult = this.aggregate(collectionName, aggregationParameter.getGroup(), matchList);
+        // Daily 集合名称
+        String dailyCollectionName = aggregationParameter.getDailyCubeCoCollectionName();
+        var dailyCollection = template.getDb().getCollection(dailyCollectionName);
+
+        aggregationResult = null;
+    }
+
+
+    @Override
+    public AggregationResult aggregateFromCube(AggregationParameter aggregationParameter) {
+        String collectionName = aggregationParameter.getCollectionName();
+        Group groupParameter = aggregationParameter.getGroup();
+        List<Match> matchList = aggregationParameter.getMatchList();
+
+        TimeCondition timeCondition = aggregationParameter.getTimeCondition();
+        Match match = new Match();
+        match.setValue(timeCondition.getStart());
+        match.setOperate(MatchOperate.gte);
+        match.setField(timeCondition.getField());
+        match.setLink(MatchLinkOperate.and);
+        matchList.add(match);
+
+        match = new Match();
+        match.setValue(timeCondition.getEnd());
+        match.setOperate(MatchOperate.lt);
+        match.setField(timeCondition.getField());
+        matchList.add(match);
+
+        AggregationResult aggregationResult = this.aggregate(collectionName, groupParameter, matchList);
+        return aggregationResult;
+    }
+
 
     private Criteria buildCriteria(List<Match> matchList) {
         Criteria criteria = null;

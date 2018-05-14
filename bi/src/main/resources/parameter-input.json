@@ -1,25 +1,37 @@
 {
+  "collectionName": "StatisticOrder",
+  "timeCondition": {
+    "field": "RegisterTime",
+    "start": "2014-01-01T00:00:00Z",
+    "end": "2015-01-01T00:00:00Z"
+  },
   "group": {
+    "cube":"C1",/* 生成CLUE表名字 */
     "fields": [
-      "DeviceName"
-    ],
-    "operations": [
+      "PatientGender",
+      "ModalityName",
+      "DeviceName",
+      "PatientType",
+      "ExecDepartmentName",
+      "ApplyDepartmentId"
+    ], /*
+    性别           （PatientGender）
+    设备类型   (ModalityName)
+    设备           (DeviceName)
+    患者来源   (PatientType)
+    检查科室   （ExecDepartmentName）
+    申请科室    （ApplyDepartmentId）
+    是否三维重建 （true）
+
+    */
+    "operationList": [
       {
-        "type": "count",
+        "alias": "t",
         "field": "",
-        "alias": "t"
-      },
-      {
-        "type": "sum",
-        "field": "Age",
-        "alias": "Age"
+        "type": "count"
       }
     ]
   },
-  "matchs":[{
-    "field": "RegisterTime",
-    "operate": "lt",
-    "value": "2018-05-10 17:35",
-    "link":"and"
-  }]
+  "matchList": [
+  ]
 }
