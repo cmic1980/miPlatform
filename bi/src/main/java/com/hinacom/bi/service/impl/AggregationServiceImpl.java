@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,7 +34,7 @@ public class AggregationServiceImpl implements AggregationService {
     @Autowired
     private MongoTemplate template;
 
-    private AggregationResult aggregate(String collectionName, Group groupParameter, List<Match> matchList) {
+    private AggregationResult aggregate(String collectionName, Group groupParameter, List<Match> matchList) throws ParseException {
         List<AggregationOperation> aggregationOperationList = new ArrayList<AggregationOperation>();
 
         // matchs
@@ -86,7 +87,7 @@ public class AggregationServiceImpl implements AggregationService {
         return aggregationResult;
     }
 
-    public AggregationResult aggregateByTimeScope(String collectionName, Group groupParameter, TimeCondition timeCondition) {
+    public AggregationResult aggregateByTimeScope(String collectionName, Group groupParameter, TimeCondition timeCondition) throws ParseException {
         List<Match> matchList = new ArrayList<Match>();
         Match match = new Match();
         match.setValue(timeCondition.getStart());
@@ -99,7 +100,7 @@ public class AggregationServiceImpl implements AggregationService {
     }
 
     @Override
-    public void generateCube(AggregationParameter aggregationParameter, Boolean isReimport) {
+    public void generateCube(AggregationParameter aggregationParameter, Boolean isReimport) throws ParseException {
 
         // 预处理数据
         if (isReimport) {
@@ -113,34 +114,58 @@ public class AggregationServiceImpl implements AggregationService {
             TimeCondition timeCondition = aggregationParameter.getTimeCondition();
             Date start = timeCondition.getStart();
             Date end = timeCondition.getEnd();
+            Calendar calendar;
             while (start.getTime() < end.getTime()) {
                 this.generateCubeForDaily(aggregationParameter, start);
-                Calendar calendar = Calendar.getInstance();
+                calendar = Calendar.getInstance();
                 calendar.setTime(start);
                 calendar.add(Calendar.DATE, 1);
                 start = calendar.getTime();
             }
+
+            // monthly
+            String monthlyCollectionName = aggregationParameter.getMonthlyCubeCoCollectionName();
+            this.template.getDb().getCollection(monthlyCollectionName).drop();
+            this.template.getDb().createCollection(monthlyCollectionName);
+            start = timeCondition.getStart();
+
+
+            end = timeCondition.getEnd();
+            calendar = Calendar.getInstance();
+            calendar.setTime(end);
+            calendar.add(Calendar.MONTH,1);
+            end = calendar.getTime();
+
+            while (start.getTime() < end.getTime()) {
+                this.generateCubeForMonthly(aggregationParameter, start);
+                calendar = Calendar.getInstance();
+                calendar.setTime(start);
+                calendar.add(Calendar.MONTH, 1);
+                start = calendar.getTime();
+            }
+
         } else {
-            // daily
             ZoneId zoneId = ZoneId.systemDefault();
             LocalDate lday = LocalDate.now();
             ZonedDateTime zdt = lday.atStartOfDay(zoneId);
-
             Date day = Date.from(zdt.toInstant());
+            // daily
             this.generateCubeForDaily(aggregationParameter, day);
+
+            // monthly
+            this.generateCubeForMonthly(aggregationParameter, day);
         }
 
     }
 
-    private void generateCubeForDaily(AggregationParameter aggregationParameter, Date day) {
+    private void generateCubeForDaily(AggregationParameter aggregationParameter, Date day) throws ParseException {
         Date start = day;
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(start);
         calendar.add(Calendar.DATE, 1);
         Date end = calendar.getTime();
 
-
-        List<Match> matchList = aggregationParameter.getMatchList();
+        List<Match> matchList = new ArrayList<Match>();
         Match match = new Match();
         match.setValue(start);
         match.setOperate(MatchOperate.gte);
@@ -158,16 +183,67 @@ public class AggregationServiceImpl implements AggregationService {
         // 集合名称
         String collectionName = aggregationParameter.getCollectionName();
         AggregationResult aggregationResult = this.aggregate(collectionName, aggregationParameter.getGroup(), matchList);
+
+        aggregationResult.getItemList().forEach(s->{
+            s.put("start",start);
+            s.put("end",end);
+        });
+
         // Daily 集合名称
         String dailyCollectionName = aggregationParameter.getDailyCubeCoCollectionName();
         var dailyCollection = template.getDb().getCollection(dailyCollectionName);
-        dailyCollection.insertMany(aggregationResult.getItemList());
-        aggregationResult = null;
+        if(aggregationResult.getItemList()!=null && aggregationResult.getItemList().size()!=0)
+        {
+            dailyCollection.insertMany(aggregationResult.getItemList());
+        }
+
+    }
+
+    private void generateCubeForMonthly(AggregationParameter aggregationParameter, Date day) throws ParseException {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(day);
+        calendar.set(Calendar.DAY_OF_MONTH,1);
+        Date start = calendar.getTime();
+
+        calendar.add(Calendar.MONTH, 1);
+        Date end = calendar.getTime();
+
+        List<Match> matchList = new ArrayList<Match>();
+        Match match = new Match();
+        match.setValue(start);
+        match.setOperate(MatchOperate.gte);
+        match.setField(aggregationParameter.getTimeCondition().getField());
+        match.setLink(MatchLinkOperate.and);
+        matchList.add(match);
+
+        match = new Match();
+        match.setValue(end);
+        match.setOperate(MatchOperate.lt);
+        match.setField(aggregationParameter.getTimeCondition().getField());
+        matchList.add(match);
+
+        // 集合名称
+        String collectionName = aggregationParameter.getCollectionName();
+        AggregationResult aggregationResult = this.aggregate(collectionName, aggregationParameter.getGroup(), matchList);
+        aggregationResult.getItemList().forEach(s->{
+            s.put("start",start);
+            s.put("end",end);
+        });
+
+        // Daily 集合名称
+        String monthlyCubeCoCollectionName = aggregationParameter.getMonthlyCubeCoCollectionName();
+        var monthlyCubeCoCollection = template.getDb().getCollection(monthlyCubeCoCollectionName);
+        if(aggregationResult.getItemList()!=null && aggregationResult.getItemList().size()!=0) {
+            monthlyCubeCoCollection.insertMany(aggregationResult.getItemList());
+        }
     }
 
 
+
+
+
     @Override
-    public AggregationResult aggregateFromCube(AggregationParameter aggregationParameter) {
+    public AggregationResult aggregateFromCube(AggregationParameter aggregationParameter) throws ParseException {
         String collectionName = aggregationParameter.getCollectionName();
         Group groupParameter = aggregationParameter.getGroup();
         List<Match> matchList = aggregationParameter.getMatchList();
@@ -191,7 +267,7 @@ public class AggregationServiceImpl implements AggregationService {
     }
 
 
-    private Criteria buildCriteria(List<Match> matchList) {
+    private Criteria buildCriteria(List<Match> matchList) throws ParseException {
         Criteria criteria = null;
         MatchLinkOperate linkOperate = null;
         for (Match match : matchList) {

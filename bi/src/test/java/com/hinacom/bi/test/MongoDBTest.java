@@ -63,6 +63,6 @@ public class MongoDBTest {
         String json = FileUtils.readFileToString(file,"utf-8");
         AggregationParameter aggregationParameter = JSONObject.parseObject(json, AggregationParameter.class);
 
-        aggregationService.generateCube(aggregationParameter, true);
+        aggregationService.generateCube(aggregationParameter, false);
     }
 }

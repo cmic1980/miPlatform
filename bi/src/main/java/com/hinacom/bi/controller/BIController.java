@@ -9,13 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+
 @RestController
 public class BIController {
     @Autowired
     private AggregationService aggregationService;
 
     @RequestMapping(value = "/bi/aggregate", method = RequestMethod.POST)
-    public AggregationResult aggregateFromCube(@RequestBody AggregationParameter parameter) {
+    public AggregationResult aggregateFromCube(@RequestBody AggregationParameter parameter) throws ParseException {
         var result = aggregationService.aggregateFromCube(parameter);
         return result;
     }

@@ -2,9 +2,9 @@
   "collectionName": "StatisticOrder",
   "timeCondition": {
     "field": "RegisterTime",
-    "start": "2014-01-01T00:00:00Z",
-    "end": "2015-01-01T00:00:00Z"
-  },
+    "start": "2014-01-07T00:00:00Z",
+    "end": "2015-01-02T00:00:00Z"
+  }, /* 搜索时间字段范围| 导入时间范围 */
   "group": {
     "cube":"C1",/* 生成CLUE表名字 */
     "fields": [

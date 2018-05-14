@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 public class Match {
     private String field;
@@ -35,14 +36,13 @@ public class Match {
         this.value = value;
     }
 
-    public Object getObjectValue(){
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String s = df.format(new Date());
-        try {
+    public Object getObjectValue() throws ParseException {
+        boolean isMatch = Pattern.matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[Z]*$", this.getValue().toString());
+        if(isMatch)
+        {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             Date date = df.parse(this.value.toString());
             return date;
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
         return this.value;
     }
