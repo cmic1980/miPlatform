@@ -5,7 +5,7 @@ import org.bson.Document;
 
 import java.util.HashMap;
 
-public class AggregationResultItem extends HashMap {
+public class AggregationResultItem extends Document {
     public static AggregationResultItem parse(Document document) {
         AggregationResultItem aggregationResultItem = new AggregationResultItem();
 

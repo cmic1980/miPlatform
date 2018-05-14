@@ -161,7 +161,7 @@ public class AggregationServiceImpl implements AggregationService {
         // Daily 集合名称
         String dailyCollectionName = aggregationParameter.getDailyCubeCoCollectionName();
         var dailyCollection = template.getDb().getCollection(dailyCollectionName);
-
+        dailyCollection.insertMany(aggregationResult.getItemList());
         aggregationResult = null;
     }
 

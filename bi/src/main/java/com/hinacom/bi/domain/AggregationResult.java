@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
 import com.mongodb.BasicDBObject;
+import org.bson.BsonDocument;
 import org.bson.Document;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 
