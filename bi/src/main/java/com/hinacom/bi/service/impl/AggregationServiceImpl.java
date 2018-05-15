@@ -358,32 +358,7 @@ public class AggregationServiceImpl implements AggregationService {
             matchList.add(match);
 
             String monthlyCollectionName = aggregationParameter.getMonthlyCubeCoCollectionName();
-            // LocalDateTime s1 = LocalDateTime.now();
             var t2AggregationResult = this.aggregate(monthlyCollectionName, groupParameter, matchList);
-            // LocalDateTime e1 = LocalDateTime.now();
-            // var se1 = Duration.between(s1,e1);
-
-            /*
-            matchList = new ArrayList<>();
-            matchList.addAll(aggregationParameter.getMatchList());
-            match = new Match();
-            match.setValue(t1End);
-            match.setOperate(MatchOperate.gte);
-            match.setField(timeCondition.getField());
-            match.setLink(MatchLinkOperate.and);
-            matchList.add(match);
-
-            match = new Match();
-            match.setValue(t2End);
-            match.setOperate(MatchOperate.lt);
-            match.setField(timeCondition.getField());
-            matchList.add(match);
-
-            LocalDateTime s2 = LocalDateTime.now();
-            var t3AggregationResult = this.aggregate(collectionName, groupParameter, matchList);
-            LocalDateTime e2 = LocalDateTime.now();
-            var se2 = Duration.between(s2,e2);
-            */
 
             if (aggregationResult == null) {
                 aggregationResult = t2AggregationResult;
@@ -391,7 +366,34 @@ public class AggregationServiceImpl implements AggregationService {
                 aggregationResult.merge(t2AggregationResult);
             }
 
-            // 第一段时间 2014-01-01
+
+            /**
+             * t3
+             * */
+            // t3->
+            LocalDateTime t3LocalEnd = end.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+            if(t2LocalEnd.atStartOfDay().isBefore(t3LocalEnd)) // t3起始时间是月初
+            {
+                matchList = new ArrayList<>();
+                matchList.addAll(aggregationParameter.getMatchList());
+
+                match = new Match();
+                match.setValue(t2End);
+                match.setOperate(MatchOperate.gte);
+                match.setField(timeCondition.getField());
+                match.setLink(MatchLinkOperate.and);
+                matchList.add(match);
+
+                match = new Match();
+                match.setValue(end);
+                match.setOperate(MatchOperate.lt);
+                match.setField(timeCondition.getField());
+                matchList.add(match);
+
+                var t3AggregationResult = this.aggregate(collectionName, groupParameter, matchList);
+                aggregationResult.merge(t3AggregationResult);
+            }
+
             return aggregationResult;
         }
     }
