@@ -9,6 +9,7 @@ import org.bson.Document;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,5 +35,17 @@ public class AggregationResult {
 
     public List<AggregationResultItem> getItemList() {
         return itemList;
+    }
+
+    public void merge(AggregationResult source)
+    {
+        HashMap<String,AggregationResultItem> targetMap = new HashMap<>();
+        this.itemList.forEach((s)-> {targetMap.put(s.toString(), s);});
+
+        HashMap<String,AggregationResultItem> sourceMap = new HashMap<>();
+        source.getItemList().forEach((s)-> {sourceMap.put(s.toString(), s);});
+        targetMap.putAll(sourceMap);
+
+        this.itemList = targetMap.values().parallelStream().collect(Collectors.toList());
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -48,10 +49,13 @@ public class MongoDBTest {
         String json = FileUtils.readFileToString(file,"utf-8");
         AggregationParameter aggregationParameter = JSONObject.parseObject(json, AggregationParameter.class);
 
-        AggregationResult aggregationResult = aggregationService.aggregateFromCube(aggregationParameter);
+        AggregationResult aggregationResultFromCube = aggregationService.aggregateFromCube(aggregationParameter);
+
+        aggregationParameter = JSONObject.parseObject(json, AggregationParameter.class);
+        AggregationResult aggregationResult = aggregationService.aggregate(aggregationParameter);
+
+        // aggregationResultFromCube = null;
         aggregationResult = null;
-
-
     }
 
     @Test
@@ -63,6 +67,6 @@ public class MongoDBTest {
         String json = FileUtils.readFileToString(file,"utf-8");
         AggregationParameter aggregationParameter = JSONObject.parseObject(json, AggregationParameter.class);
 
-        aggregationService.generateCube(aggregationParameter, false);
+        aggregationService.generateCube(aggregationParameter, true);
     }
 }

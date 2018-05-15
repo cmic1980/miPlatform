@@ -13,7 +13,7 @@ public interface AggregationService {
      * */
     AggregationResult aggregateFromCube(AggregationParameter aggregationParameter) throws ParseException;
 
-    AggregationResult aggregateByTimeScope(String collectionName, Group groupParameter, TimeCondition timeCondition) throws ParseException;
+    AggregationResult aggregate(AggregationParameter aggregationParameter) throws ParseException;
 
     void generateCube(AggregationParameter aggregationParameter, Boolean isReimport) throws ParseException;
 }

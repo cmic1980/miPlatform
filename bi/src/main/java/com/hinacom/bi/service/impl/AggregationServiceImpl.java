@@ -16,14 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.time.*;
+import java.time.temporal.TemporalField;
+import java.util.*;
 
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
@@ -87,18 +82,6 @@ public class AggregationServiceImpl implements AggregationService {
         return aggregationResult;
     }
 
-    public AggregationResult aggregateByTimeScope(String collectionName, Group groupParameter, TimeCondition timeCondition) throws ParseException {
-        List<Match> matchList = new ArrayList<Match>();
-        Match match = new Match();
-        match.setValue(timeCondition.getStart());
-        match.setOperate(MatchOperate.gt);
-        match.setField(timeCondition.getField());
-        matchList.add(match);
-
-        AggregationResult aggregationResult = this.aggregate(collectionName, groupParameter, matchList);
-        return aggregationResult;
-    }
-
     @Override
     public void generateCube(AggregationParameter aggregationParameter, Boolean isReimport) throws ParseException {
 
@@ -133,7 +116,7 @@ public class AggregationServiceImpl implements AggregationService {
             end = timeCondition.getEnd();
             calendar = Calendar.getInstance();
             calendar.setTime(end);
-            calendar.add(Calendar.MONTH,1);
+            calendar.add(Calendar.MONTH, 1);
             end = calendar.getTime();
 
             while (start.getTime() < end.getTime()) {
@@ -184,16 +167,15 @@ public class AggregationServiceImpl implements AggregationService {
         String collectionName = aggregationParameter.getCollectionName();
         AggregationResult aggregationResult = this.aggregate(collectionName, aggregationParameter.getGroup(), matchList);
 
-        aggregationResult.getItemList().forEach(s->{
-            s.put("start",start);
-            s.put("end",end);
+        aggregationResult.getItemList().forEach(s -> {
+            s.put("start", start);
+            s.put("end", end);
         });
 
         // Daily 集合名称
         String dailyCollectionName = aggregationParameter.getDailyCubeCoCollectionName();
         var dailyCollection = template.getDb().getCollection(dailyCollectionName);
-        if(aggregationResult.getItemList()!=null && aggregationResult.getItemList().size()!=0)
-        {
+        if (aggregationResult.getItemList() != null && aggregationResult.getItemList().size() != 0) {
             dailyCollection.insertMany(aggregationResult.getItemList());
         }
 
@@ -202,7 +184,7 @@ public class AggregationServiceImpl implements AggregationService {
     private void generateCubeForMonthly(AggregationParameter aggregationParameter, Date day) throws ParseException {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(day);
-        calendar.set(Calendar.DAY_OF_MONTH,1);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
         Date start = calendar.getTime();
 
         calendar.add(Calendar.MONTH, 1);
@@ -225,30 +207,203 @@ public class AggregationServiceImpl implements AggregationService {
         // 集合名称
         String collectionName = aggregationParameter.getCollectionName();
         AggregationResult aggregationResult = this.aggregate(collectionName, aggregationParameter.getGroup(), matchList);
-        aggregationResult.getItemList().forEach(s->{
-            s.put("start",start);
-            s.put("end",end);
+        aggregationResult.getItemList().forEach(s -> {
+            s.put("start", start);
+            s.put("end", end);
         });
 
         // Daily 集合名称
         String monthlyCubeCoCollectionName = aggregationParameter.getMonthlyCubeCoCollectionName();
         var monthlyCubeCoCollection = template.getDb().getCollection(monthlyCubeCoCollectionName);
-        if(aggregationResult.getItemList()!=null && aggregationResult.getItemList().size()!=0) {
+        if (aggregationResult.getItemList() != null && aggregationResult.getItemList().size() != 0) {
             monthlyCubeCoCollection.insertMany(aggregationResult.getItemList());
         }
     }
 
-
-
-
-
     @Override
     public AggregationResult aggregateFromCube(AggregationParameter aggregationParameter) throws ParseException {
+        ZoneId utc = ZoneId.systemDefault();
+
         String collectionName = aggregationParameter.getCollectionName();
         Group groupParameter = aggregationParameter.getGroup();
-        List<Match> matchList = aggregationParameter.getMatchList();
 
         TimeCondition timeCondition = aggregationParameter.getTimeCondition();
+        var start = timeCondition.getStart();
+        var end = timeCondition.getEnd();
+
+        // 查询数据从 monthly cube 及明细， 时间分段 其实时间后一个月1号前事件 + 月 cube，截至时间当月明细
+        // 2014-02-08 <= t < 2015-03-10 => ( 2014-02-08 <= t1 2014-03-01 (daily), 2014-03-01<= t2 < 2015-03-01 (monthly), 2015-03-01<=t3<2015-03-10 (daily))
+
+        // 判断其实时间和截至时间是否在一个月内数据量比较小不用分段计算
+        var localStart = start.toInstant().atZone(utc).toLocalDate();
+        var localEnd = end.toInstant().atZone(utc).toLocalDate();
+        List<Match> matchList = null;
+        var period = Period.between(localStart, localEnd);
+        if (period.getYears() == 0 && period.getMonths() == 0) {
+            matchList = aggregationParameter.getMatchList();
+
+            Match match;
+            match = new Match();
+            match.setValue(start);
+            match.setOperate(MatchOperate.gte);
+            match.setField(timeCondition.getField());
+            match.setLink(MatchLinkOperate.and);
+            matchList.add(match);
+
+            match = new Match();
+            match.setValue(end);
+            match.setOperate(MatchOperate.lt);
+            match.setField(timeCondition.getField());
+            matchList.add(match);
+
+            AggregationResult aggregationResult = this.aggregate(collectionName, groupParameter, matchList);
+            return aggregationResult;
+        } else {
+            AggregationResult aggregationResult = null;
+
+
+            /**
+             * t1
+             * */
+
+            var localTimeStart = start.toInstant().atZone(utc).toLocalDateTime();
+            ZonedDateTime zdtT1Start = localTimeStart.atZone(utc);
+
+            //获取年
+            Integer yearStart = localTimeStart.getYear();
+            //获取月份，0表示1月份
+            Integer monthStart = localTimeStart.getMonthValue();
+            //获取当前天数
+            Integer dayStart = localTimeStart.getDayOfMonth();
+            //获取当前小时
+            Integer hourStart = localTimeStart.getHour();
+            //获取当前分钟
+            Integer minuteStart = localTimeStart.getMinute();
+            //获取当前秒
+            Integer secondStart = localTimeStart.getSecond();
+
+
+            // 如果是本月第一天忽略t1
+            Date t1Start = start;
+            Date t1End = start;
+
+            if (dayStart.equals(1) == true && hourStart.equals(0) && minuteStart.equals(0) && secondStart.equals(0)) {
+
+            } else {
+                matchList = new ArrayList<>();
+                matchList.addAll(aggregationParameter.getMatchList());
+
+                // t1-> 从开始时间到下个月一号零时零分
+                LocalDate t1LocalEnd = LocalDate.of(yearStart, monthStart, 1);
+                t1LocalEnd = t1LocalEnd.plusMonths(1);
+                ZonedDateTime zdtT1End = t1LocalEnd.atStartOfDay(utc);
+                t1End = Date.from(zdtT1End.toInstant());
+
+                Match match;
+                match = new Match();
+                match.setValue(t1Start);
+                match.setOperate(MatchOperate.gte);
+                match.setField(timeCondition.getField());
+                match.setLink(MatchLinkOperate.and);
+                matchList.add(match);
+
+                match = new Match();
+                match.setValue(t1End);
+                match.setOperate(MatchOperate.lt);
+                match.setField(timeCondition.getField());
+                matchList.add(match);
+
+                var t1AggregationResult = this.aggregate(collectionName, groupParameter, matchList);
+                aggregationResult = t1AggregationResult;
+            }
+
+
+            /**
+             * t2
+             * */
+            // t2-> 从开始时间到下个月一号零时零分为第二阶段为
+            var localTimeEnd = end.toInstant().atZone(utc).toLocalDateTime();
+            //获取年
+            Integer yearEnd = localTimeEnd.getYear();
+            //获取月份，0表示1月份
+            Integer monthEnd = localTimeEnd.getMonthValue();
+            //获取当前天数
+            Integer dayEnd = localTimeEnd.getDayOfMonth();
+            //获取当前小时
+            Integer hourEnd = localTimeEnd.getHour();
+            //获取当前分钟
+            Integer minuteEnd = localTimeEnd.getMinute();
+            //获取当前秒
+            Integer secondEnd = localTimeEnd.getSecond();
+
+            LocalDate t2LocalEnd = LocalDate.of(yearEnd, monthEnd, 1);
+            ZonedDateTime zdtT2End = t2LocalEnd.atStartOfDay(utc);
+            var t2End = Date.from(zdtT2End.toInstant());
+
+            matchList = new ArrayList<>();
+            matchList.addAll(aggregationParameter.getMatchList());
+
+            Match match;
+            match = new Match();
+            match.setValue(t1End);
+            match.setOperate(MatchOperate.gte);
+            match.setField("start");
+            match.setLink(MatchLinkOperate.and);
+            matchList.add(match);
+
+            match = new Match();
+            match.setValue(t2End);
+            match.setOperate(MatchOperate.lt);
+            match.setField("end");
+            matchList.add(match);
+
+            String monthlyCollectionName = aggregationParameter.getMonthlyCubeCoCollectionName();
+            // LocalDateTime s1 = LocalDateTime.now();
+            var t2AggregationResult = this.aggregate(monthlyCollectionName, groupParameter, matchList);
+            // LocalDateTime e1 = LocalDateTime.now();
+            // var se1 = Duration.between(s1,e1);
+
+            /*
+            matchList = new ArrayList<>();
+            matchList.addAll(aggregationParameter.getMatchList());
+            match = new Match();
+            match.setValue(t1End);
+            match.setOperate(MatchOperate.gte);
+            match.setField(timeCondition.getField());
+            match.setLink(MatchLinkOperate.and);
+            matchList.add(match);
+
+            match = new Match();
+            match.setValue(t2End);
+            match.setOperate(MatchOperate.lt);
+            match.setField(timeCondition.getField());
+            matchList.add(match);
+
+            LocalDateTime s2 = LocalDateTime.now();
+            var t3AggregationResult = this.aggregate(collectionName, groupParameter, matchList);
+            LocalDateTime e2 = LocalDateTime.now();
+            var se2 = Duration.between(s2,e2);
+            */
+
+            if (aggregationResult == null) {
+                aggregationResult = t2AggregationResult;
+            } else {
+                aggregationResult.merge(t2AggregationResult);
+            }
+
+            // 第一段时间 2014-01-01
+            return aggregationResult;
+        }
+    }
+
+    @Override
+    public AggregationResult aggregate(AggregationParameter aggregationParameter) throws ParseException {
+        String collectionName = aggregationParameter.getCollectionName();
+        var groupParameter = aggregationParameter.getGroup();
+        var timeCondition = aggregationParameter.getTimeCondition();
+        List<Match> matchList = new ArrayList<>();
+        matchList.addAll(aggregationParameter.getMatchList());
+
         Match match = new Match();
         match.setValue(timeCondition.getStart());
         match.setOperate(MatchOperate.gte);
@@ -262,10 +417,9 @@ public class AggregationServiceImpl implements AggregationService {
         match.setField(timeCondition.getField());
         matchList.add(match);
 
-        AggregationResult aggregationResult = this.aggregate(collectionName, groupParameter, matchList);
+        var aggregationResult = this.aggregate(collectionName, groupParameter, matchList);
         return aggregationResult;
     }
-
 
     private Criteria buildCriteria(List<Match> matchList) throws ParseException {
         Criteria criteria = null;
@@ -292,8 +446,13 @@ public class AggregationServiceImpl implements AggregationService {
                     break;
             }
 
-            if (linkOperate == null) {
-                criteria = iCriteria;
+            if (linkOperate == null) { // 无连接表达式
+                if (criteria == null) // 无条件第一个表达式
+                {
+                    criteria = iCriteria;
+                } else {
+                    criteria = criteria.andOperator(iCriteria);
+                }
             } else {
                 switch (linkOperate) {
                     case and:
