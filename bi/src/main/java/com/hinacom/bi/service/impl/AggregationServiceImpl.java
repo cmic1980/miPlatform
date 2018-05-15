@@ -148,6 +148,10 @@ public class AggregationServiceImpl implements AggregationService {
         calendar.add(Calendar.DATE, 1);
         Date end = calendar.getTime();
 
+        var localTimeStart =  start.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        var date = getDateInteger(localTimeStart);
+
+
         List<Match> matchList = new ArrayList<Match>();
         Match match = new Match();
         match.setValue(start);
@@ -170,6 +174,7 @@ public class AggregationServiceImpl implements AggregationService {
         aggregationResult.getItemList().forEach(s -> {
             s.put("start", start);
             s.put("end", end);
+            s.put("date", date);
         });
 
         // Daily 集合名称
@@ -186,6 +191,10 @@ public class AggregationServiceImpl implements AggregationService {
         calendar.setTime(day);
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         Date start = calendar.getTime();
+
+        var localTimeStart =  start.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        var month = getMonthInteger(localTimeStart);
+
 
         calendar.add(Calendar.MONTH, 1);
         Date end = calendar.getTime();
@@ -210,6 +219,7 @@ public class AggregationServiceImpl implements AggregationService {
         aggregationResult.getItemList().forEach(s -> {
             s.put("start", start);
             s.put("end", end);
+            s.put("month", month);
         });
 
         // Daily 集合名称
@@ -220,7 +230,19 @@ public class AggregationServiceImpl implements AggregationService {
         }
     }
 
-    @Override
+    private Integer getMonthInteger(LocalDateTime localDateTime)
+    {
+        var month = localDateTime.getYear() * 100 + localDateTime.getMonthValue();
+        return month;
+    }
+
+    private Integer getDateInteger(LocalDateTime localDateTime)
+    {
+        var date = localDateTime.getYear() * 10000 + localDateTime.getMonthValue()*100 + localDateTime.getDayOfMonth();
+        return date;
+    }
+
+   @Override
     public AggregationResult aggregateFromCube(AggregationParameter aggregationParameter) throws ParseException {
         ZoneId utc = ZoneId.systemDefault();
 
@@ -343,18 +365,24 @@ public class AggregationServiceImpl implements AggregationService {
             matchList = new ArrayList<>();
             matchList.addAll(aggregationParameter.getMatchList());
 
+            LocalDateTime t1LocalTimeEnd = t1End.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+            var t1Month = getMonthInteger(t1LocalTimeEnd);
+
             Match match;
             match = new Match();
-            match.setValue(t1End);
+            match.setValue(t1Month);
             match.setOperate(MatchOperate.gte);
-            match.setField("start");
+            match.setField("month");
             match.setLink(MatchLinkOperate.and);
             matchList.add(match);
 
+            LocalDateTime t2LocalTimeEnd = t2End.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+            var t2Month = getMonthInteger(t2LocalTimeEnd);
+
             match = new Match();
-            match.setValue(t2End);
+            match.setValue(t2Month);
             match.setOperate(MatchOperate.lt);
-            match.setField("end");
+            match.setField("month");
             matchList.add(match);
 
             String monthlyCollectionName = aggregationParameter.getMonthlyCubeCoCollectionName();
